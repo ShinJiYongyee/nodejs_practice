@@ -1,0 +1,19 @@
+// node에서 비동기 처리를 할 때 주로 쓰이는 방식 3가지
+// 콜백, 프라미스, async/await
+const arr = [10, 20, 30, 40, 50];
+
+// 실행 지연을 위한 프라미스 함수
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// 출력을 수행하는 비동기 함수
+// 비동기 처리할 promise 함수 delay를 await으로 호출
+async function Print() {
+    for (const item of arr) {
+        console.log(item);
+        await delay(1000);
+    }
+}
+
+Print();
