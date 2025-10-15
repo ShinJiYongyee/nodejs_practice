@@ -12,4 +12,5 @@ router.get("/", (req,res) => {
 });
 
 module.exports = router;    
+// 이 파일을 require로 가져올 때 router.get(...)객체를 반환하도록 설정
 
