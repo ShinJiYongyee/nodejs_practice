@@ -6,7 +6,7 @@ const path = require("path");
 // @route GET /contacts
 const getAllContacts = asyncHandler(async (req, res) => {
   const contacts = await Contact.find();
-  res.render("getAll");
+  res.render("index", {contacts: contacts});
 });
 
 // @desc Create a contact
