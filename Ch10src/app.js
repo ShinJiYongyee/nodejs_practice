@@ -1,5 +1,6 @@
 const express = require("express");
 const dbConnect = require("./config/dbConnect");
+const methodOverride = require("method-override");
 
 const app = express();
 const port = 3000;
@@ -11,6 +12,8 @@ dbConnect();
 
 //정적 파일 폴더(public) 등록
 app.use(express.static("./public"));
+
+app.use(methodOverride("_method"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
