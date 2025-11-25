@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const cookieParser = require("cookie-parser");
+const checkLogin = require("../middlewares/checkLogin");
 
 const {
   getAllContacts,
@@ -10,10 +12,21 @@ const {
   addContactForm
 } = require("../controllers/contactController");
 
-router.route("/").get(getAllContacts)
+router.use(cookieParser());
 
-router.route("/add").get(addContactForm).post(createContact);
+router
+  .route("/")
+  .get(checkLogin, getAllContacts);
 
-router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
+router
+  .route("/add")
+  .get(checkLogin, addContactForm)
+  .post(checkLogin, createContact);
+
+router
+  .route("/:id")
+  .get(checkLogin, getContact)
+  .put(checkLogin, updateContact)
+  .delete(checkLogin, deleteContact);
 
 module.exports = router;
